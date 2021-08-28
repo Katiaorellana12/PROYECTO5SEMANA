@@ -55,8 +55,45 @@ namespace PROYECTO5SEMANA
                     return false;
             }
         }
-        
+        //metodo para leer el contenido del archivo
+        private static Dictionary<object, object> readFile()
+        {
+            //declarar el diccionario
+            Dictionary<object, object> listData = new Dictionary<object, object>();
+
+            //uso del StreamReader para leer el archivo
+            using (var reader = new StreamReader(getPath()))
+            {
+                //variable para almacenar el contenido del archivo
+                string lines;
+
+                while ((lines = reader.ReadLine()) != null) //mientras no se encuentre una linea vacia se ejecuta el ciclo
+                {
+                    string[] keyvalue = lines.Split(';');
+                    if (keyvalue.Length == 2)
+                    {
+                        listData.Add(keyvalue[0], keyvalue[1]);
+                    }
+                }
+
+            }
+
+            //retornar el diccionario
+            return listData;
+        }
+
+        //metodo para buscar por clave
+        private static bool search(string name)
+        {
+            if (!readFile().ContainsKey(name))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //metodo para actualizar
         private void mensaje()
         {
-            Console.WriteLine("KATIA ORELLANA");
+            Console.WriteLine("erick cano");
         }
